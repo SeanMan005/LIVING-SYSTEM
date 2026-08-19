@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Five Marks of a Living System</title>
+<meta name="description" content="Five criteria that classify any system as living, drawn as five diagram plates.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23e7eae6'/%3E%3Crect x='7' y='7' width='7' height='7' fill='%23c9742c'/%3E%3Crect x='18' y='7' width='7' height='7' fill='%23c9742c'/%3E%3Crect x='7' y='18' width='7' height='7' fill='%23c9742c'/%3E%3Crect x='18' y='18' width='7' height='7' fill='%2379708a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=JetBrains+Mono:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;0,500;1,300&display=swap">
+<style>
+  /* ------------------------------------------------------------------
+     Specimen-plate treatment. Cool bone paper, pine ink, one live hue
+     (amber = the current running through a system) and one drained hue
+     (mauve-grey = entropy, colour bled out). Every colour is a token so
+     all three theme states resolve: bare, prefers-dark, stamped.
+     ------------------------------------------------------------------ */
+  :root {
+    --paper:     #e7eae6;
+    --plate:     #f2f4f0;
+    --plate-2:   #e8ebe6;
+    --ink:       #16211d;
+    --prose:     #3f4a45;
+    --dim:       #6b7671;
+    --faint:     #949e98;
+    --rule:      #d2d7d0;
+    --rule-lit:  #b4bbb3;
+
+    --live:      #a8501c;
+    --live-b:    #c9742c;
+    --live-wash: rgba(201,116,44,.14);
+    --decay:     #79708a;
+
+    --shadow: 0 1px 1px rgba(20,32,28,.05), 0 12px 36px rgba(20,32,28,.07);
+
+    --display: "Bodoni Moda", Didot, "Times New Roman", serif;
+    --serif:   "Spectral", Iowan Old Style, Georgia, "Times New Roman", serif;
+    --mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+    --col:  64ch;
+    --wide: 1040px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #0d1311;
+      --plate:     #131a18;
+      --plate-2:   #18211e;
+      --ink:       #eef2ec;
+      --prose:     #bcc6c0;
+      --dim:       #8b958f;
+      --faint:     #6a746e;
+      --rule:      #222b28;
+      --rule-lit:  #37413c;
+
+      --live:      #e0983f;
+      --live-b:    #c9742c;
+      --live-wash: rgba(224,152,63,.16);
+      --decay:     #9d93a9;
+
+      --shadow: 0 1px 2px rgba(0,0,0,.45), 0 16px 46px rgba(0,0,0,.45);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:     #0d1311;
+    --plate:     #131a18;
+    --plate-2:   #18211e;
+    --ink:       #eef2ec;
+    --prose:     #bcc6c0;
+    --dim:       #8b958f;
+    --faint:     #6a746e;
+    --rule:      #222b28;
+    --rule-lit:  #37413c;
+
+    --live:      #e0983f;
+    --live-b:    #c9742c;
+    --live-wash: rgba(224,152,63,.16);
+    --decay:     #9d93a9;
+
+    --shadow: 0 1px 2px rgba(0,0,0,.45), 0 16px 46px rgba(0,0,0,.45);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--prose);
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 17.5px;
+    line-height: 1.74;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap { max-width: var(--wide); margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
+
+  a { color: var(--live); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--live); outline-offset: 3px; }
+
+  /* ---------------- masthead ---------------- */
+
+  .masthead { padding: clamp(52px, 9vw, 116px) 0 clamp(28px, 4vw, 44px); }
+
+  .eyebrow {
+    margin: 0 0 clamp(20px, 3vw, 32px);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(40px, 7.4vw, 82px);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    text-wrap: balance;
+    max-width: 15ch;
+  }
+
+  .deck {
+    margin: clamp(22px, 3vw, 32px) 0 0;
+    max-width: 62ch;
+    font-size: clamp(18px, 2.1vw, 21px);
+    line-height: 1.66;
+    color: var(--prose);
+  }
+  .deck em { font-style: italic; color: var(--ink); }
+
+  /* ---------------- index rail ---------------- */
+
+  .index {
+    display: flex;
+    flex-wrap: wrap;
+    margin: clamp(34px, 5vw, 56px) 0 clamp(10px, 2vw, 18px);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .index a {
+    flex: 1 1 168px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 15px 16px;
+    text-decoration: none;
+    color: var(--dim);
+    border-right: 1px solid var(--rule);
+    transition: color .18s ease;
+  }
+  .index a:first-child { padding-left: 0; }
+  .index a:last-child { border-right: 0; }
+  .index a:hover { color: var(--ink); }
+  .index a:hover .ix-num { color: var(--live); }
+  .ix-num {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--faint);
+    transition: color .18s ease;
+  }
+  .ix-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* ---------------- plates ---------------- */
+
+  main { padding-bottom: clamp(40px, 6vw, 80px); }
+
+  .plate {
+    background: var(--plate);
+    border: 1px solid var(--rule);
+    box-shadow: var(--shadow);
+    padding: clamp(26px, 4vw, 52px);
+    margin: clamp(26px, 4vw, 46px) 0 0;
+    scroll-margin-top: 24px;
+  }
+
+  .plate-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(18px, 3vw, 34px);
+    align-items: start;
+    padding-bottom: clamp(18px, 2.4vw, 26px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .num {
+    font-family: var(--display);
+    font-size: clamp(34px, 5.4vw, 58px);
+    font-weight: 400;
+    line-height: 0.86;
+    letter-spacing: 0.02em;
+    color: var(--live);
+    padding-right: clamp(16px, 2.6vw, 30px);
+    border-right: 1px solid var(--rule-lit);
+    align-self: stretch;
+  }
+
+  .plate h2 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(23px, 3.1vw, 33px);
+    line-height: 1.16;
+    letter-spacing: -0.008em;
+    color: var(--ink);
+    text-wrap: balance;
+    max-width: 26ch;
+  }
+  .tag {
+    display: block;
+    margin: 0 0 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .plate p { margin: 1.05em 0 0; max-width: var(--col); }
+  .plate .body p:first-child { margin-top: clamp(16px, 2.4vw, 26px); }
+  .plate em { font-style: italic; color: var(--ink); }
+  .plate strong { font-weight: 500; color: var(--ink); }
+
+  .test {
+    margin-top: clamp(20px, 3vw, 30px);
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    max-width: var(--col);
+  }
+  .test .k {
+    flex: none;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--live);
+  }
+  .test .v { font-size: 16px; line-height: 1.62; color: var(--dim); }
+
+  /* ---------------- figures ---------------- */
+
+  figure.fig {
+    margin: clamp(26px, 3.6vw, 40px) 0 0;
+    padding-top: clamp(12px, 2vw, 22px);
+    overflow-x: auto;
+  }
+  figure.fig svg {
+    display: block;
+    width: 100%;
+    min-width: 580px;
+    max-width: 900px;
+    height: auto;
+    margin: 0 auto;
+    color: var(--ink);
+  }
+  figcaption {
+    margin: clamp(14px, 2vw, 20px) auto 0;
+    max-width: 78ch;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    color: var(--dim);
+  }
+  figcaption b {
+    font-weight: 500;
+    color: var(--live);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-right: 9px;
+  }
+
+  /* svg drawing vocabulary */
+  .s      { fill: none; stroke: currentColor; stroke-width: 1.3; }
+  .thin   { fill: none; stroke: currentColor; stroke-width: 0.9; opacity: .5; }
+  .box    { fill: var(--plate-2); stroke: var(--rule-lit); stroke-width: 1.2; }
+  .wash   { fill: var(--live-wash); stroke: var(--live); stroke-width: 1.1; }
+  .live   { stroke: var(--live); }
+  .livef  { fill: var(--live-b); stroke: none; }
+  .decay  { stroke: var(--decay); }
+  .decayf { fill: var(--decay); stroke: none; }
+  .inkf   { fill: currentColor; stroke: none; }
+  .dash   { stroke-dasharray: 5 4; }
+  .dot2   { stroke-dasharray: 2 3; }
+  .mk-ink   { fill: currentColor; }
+  .mk-live  { fill: var(--live); }
+  .mk-decay { fill: var(--decay); }
+
+  text { font-family: var(--mono); font-weight: 400; }
+  .lbl   { font-size: 10.5px; letter-spacing: 0.19em; text-transform: uppercase; fill: currentColor; }
+  .lbl-d { font-size: 10px; letter-spacing: 0.19em; text-transform: uppercase; fill: var(--dim); }
+  .lbl-l { font-size: 10.5px; letter-spacing: 0.19em; text-transform: uppercase; fill: var(--live); }
+  .lbl-x { font-size: 10.5px; letter-spacing: 0.19em; text-transform: uppercase; fill: var(--decay); }
+  .arw   { font-size: 10px; letter-spacing: 0.04em; fill: var(--dim); }
+  .arw-l { font-size: 10px; letter-spacing: 0.04em; fill: var(--live); }
+  .arw-x { font-size: 10px; letter-spacing: 0.04em; fill: var(--decay); }
+  .tick  { font-size: 9.5px; letter-spacing: 0.06em; fill: var(--faint); }
+
+  /* ---------------- coda ---------------- */
+
+  .coda { border-top: 1px solid var(--rule); padding: clamp(46px, 7vw, 92px) 0 clamp(60px, 9vw, 120px); }
+  .coda .kicker {
+    margin: 0 0 clamp(18px, 2.6vw, 26px);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--live);
+  }
+  .coda .stmt {
+    margin: 0;
+    max-width: 28ch;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(24px, 3.6vw, 40px);
+    line-height: 1.3;
+    letter-spacing: -0.006em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .coda .stmt em { font-style: italic; color: var(--live); }
+  .coda .sig {
+    margin: clamp(28px, 4vw, 44px) 0 0;
+    max-width: 62ch;
+    font-size: 17px;
+    line-height: 1.72;
+    color: var(--dim);
+  }
+
+  @media (max-width: 620px) {
+    .plate-head { grid-template-columns: 1fr; gap: 14px; }
+    .num { border-right: 0; border-bottom: 1px solid var(--rule-lit); padding: 0 0 10px; }
+    .coda .stmt { max-width: none; }
+    .index a:first-child { padding-left: 16px; }
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Classification plate &middot; substrate-independent</p>
+    <h1>Five Marks of a Living System</h1>
+    <p class="deck">A living system is not defined by biology, cells, or carbon. It is defined by a specific <em>behavioral architecture</em> — a set of operating properties that can appear in a brain, a civilization, an economic community, a microbial colony, or a cluster of machines alike. Five interlocking criteria classify something as living.</p>
+
+    <nav class="index" aria-label="The five criteria">
+      <a href="#i"><span class="ix-num">I</span><span class="ix-name">Closed<br>adaptive loop</span></a>
+      <a href="#ii"><span class="ix-num">II</span><span class="ix-name">Fresh external<br>input</span></a>
+      <a href="#iii"><span class="ix-num">III</span><span class="ix-name">Expansion &amp;<br>contraction</span></a>
+      <a href="#iv"><span class="ix-num">IV</span><span class="ix-name">Compounding<br>leverage</span></a>
+      <a href="#v"><span class="ix-num">V</span><span class="ix-name">Entropy<br>filtering</span></a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============================ I ============================ -->
+  <section class="plate" id="i">
+    <div class="plate-head">
+      <div class="num">I</div>
+      <div>
+        <span class="tag">The irreducible core</span>
+        <h2>It runs a closed adaptive loop</h2>
+      </div>
+    </div>
+
+    <div class="body">
+      <p>A living system continuously ingests raw input from its environment, compresses that input into compact internal models, and uses those models to predict and act. The brain locating an object it cannot currently see, a self-driving system projecting a top-down map from many partial camera views, a society compressing experience into laws and institutions — all perform the same operation: turning noisy observation into <strong>predictive internal representation</strong>.</p>
+      <p>The loop must close. Action re-enters the environment, the outcome is observed, and the gap between what was predicted and what occurred corrects the model. Without that closure there is only static machinery, not life.</p>
+    </div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 720 330" role="img" aria-label="A closed circuit: the environment supplies raw input to a compressor, which feeds a compact internal model, which issues a prediction that drives action back into the environment; a dashed return path carries the prediction error from the observed outcome back into the model.">
+        <defs>
+          <marker id="f1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" class="mk-ink"/></marker>
+          <marker id="f1b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" class="mk-live"/></marker>
+        </defs>
+
+        <!-- environment -->
+        <rect x="40" y="118" width="140" height="112" class="box"/>
+        <text x="110" y="140" text-anchor="middle" class="lbl-d">environment</text>
+        <circle cx="66" cy="166" r="2.6" class="inkf"/><circle cx="96" cy="158" r="2.6" class="inkf"/>
+        <circle cx="132" cy="170" r="2.6" class="inkf"/><circle cx="158" cy="156" r="2.6" class="inkf"/>
+        <circle cx="74" cy="196" r="2.6" class="inkf"/><circle cx="112" cy="188" r="2.6" class="inkf"/>
+        <circle cx="148" cy="200" r="2.6" class="inkf"/><circle cx="60" cy="214" r="2.6" class="inkf"/>
+        <circle cx="98" cy="216" r="2.6" class="inkf"/><circle cx="134" cy="214" r="2.6" class="inkf"/>
+
+        <!-- compressor -->
+        <polygon points="255,125 375,148 375,200 255,223" class="wash"/>
+        <text x="315" y="178" text-anchor="middle" class="lbl-d">compress</text>
+
+        <!-- model -->
+        <rect x="455" y="118" width="170" height="112" class="box"/>
+        <text x="540" y="140" text-anchor="middle" class="lbl-d">internal model</text>
+        <rect x="472" y="156" width="12" height="12" class="livef"/><rect x="498" y="156" width="12" height="12" class="livef"/>
+        <rect x="524" y="156" width="12" height="12" class="livef"/><rect x="550" y="156" width="12" height="12" class="livef"/>
+        <rect x="576" y="156" width="12" height="12" class="livef"/><rect x="602" y="156" width="12" height="12" class="livef"/>
+        <rect x="472" y="180" width="12" height="12" class="livef"/><rect x="498" y="180" width="12" height="12" class="livef"/>
+        <rect x="524" y="180" width="12" height="12" class="livef"/><rect x="550" y="180" width="12" height="12" class="livef"/>
+        <rect x="576" y="180" width="12" height="12" class="livef"/><rect x="602" y="180" width="12" height="12" class="livef"/>
+        <rect x="472" y="204" width="12" height="12" class="livef"/><rect x="498" y="204" width="12" height="12" class="livef"/>
+        <rect x="524" y="204" width="12" height="12" class="livef"/><rect x="550" y="204" width="12" height="12" class="livef"/>
+        <rect x="576" y="204" width="12" height="12" class="livef"/><rect x="602" y="204" width="12" height="12" class="livef"/>
+
+        <!-- action -->
+        <rect x="290" y="244" width="140" height="58" class="box"/>
+        <text x="360" y="278" text-anchor="middle" class="lbl-d">action</text>
+
+        <!-- flow -->
+        <path d="M180,174 L250,174" class="s" marker-end="url(#f1a)"/>
+        <text x="215" y="164" text-anchor="middle" class="arw">raw input</text>
+        <path d="M377,174 L450,174" class="s" marker-end="url(#f1a)"/>
+        <text x="414" y="164" text-anchor="middle" class="arw">compressed</text>
+        <path d="M540,230 L540,273 L436,273" class="s" marker-end="url(#f1a)"/>
+        <text x="492" y="264" text-anchor="middle" class="arw">predicts</text>
+        <path d="M290,273 L110,273 L110,236" class="s" marker-end="url(#f1a)"/>
+        <text x="200" y="264" text-anchor="middle" class="arw">acts on</text>
+
+        <!-- error return -->
+        <path d="M110,118 L110,72 L540,72 L540,112" class="s live dash" marker-end="url(#f1b)"/>
+        <text x="325" y="62" text-anchor="middle" class="arw-l">outcome vs. prediction &rarr; error corrects the model</text>
+      </svg>
+      <figcaption><b>Plate I</b>The loop is closed only when the last arrow lands back where the first began. Observation is compressed, the model predicts, the prediction becomes action, and the action changes the very environment that supplies the next observation. The dashed return is the learning signal: the residual between what was predicted and what actually happened.</figcaption>
+    </figure>
+
+    <div class="test">
+      <span class="k">Test</span>
+      <span class="v">Can you trace an unbroken path from what it senses, through what it stores, to what it does — and back?</span>
+    </div>
+  </section>
+
+  <!-- ============================ II ============================ -->
+  <section class="plate" id="ii">
+    <div class="plate-head">
+      <div class="num">II</div>
+      <div>
+        <span class="tag">The decisive test</span>
+        <h2>It depends on continuous fresh external input</h2>
+      </div>
+    </div>
+
+    <div class="body">
+      <p>The decisive test of a living system is what happens when you cut it off. Deprived of new environmental data, any such system is forced to feed on its own prior outputs. It enters a self-referential loop where small errors compound, models drift, coherence degrades, and the system collapses into hallucination or decay.</p>
+      <p>A mind in sensory deprivation, an under-stimulated animal, an image model recycling its own outputs — all degenerate identically. The requirement for <strong>ongoing real-world grounding</strong> is therefore a defining signature of being alive. Machinery that runs the same whether or not the world is still there was never alive to begin with.</p>
+    </div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 720 360" role="img" aria-label="Two copies of the same loop differing by one edge. On the left, fresh input from the world reaches the model, which stays an ordered lattice. On the right, the input edge is severed, the model re-ingests its own output, and a sequence of four snapshots shows the lattice drifting into scatter.">
+        <defs>
+          <marker id="f2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" class="mk-ink"/></marker>
+          <marker id="f2b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" class="mk-decay"/></marker>
+        </defs>
+
+        <!-- A: grounded -->
+        <text x="145" y="30" text-anchor="middle" class="lbl-l">input intact</text>
+        <rect x="70" y="48" width="150" height="48" class="box"/>
+        <text x="145" y="77" text-anchor="middle" class="lbl-d">world</text>
+        <path d="M145,96 L145,144" class="s live" marker-end="url(#f2a)"/>
+        <text x="154" y="126" class="arw-l">fresh input</text>
+
+        <circle cx="145" cy="196" r="48" class="box"/>
+        <rect x="118" y="169" width="10" height="10" class="livef"/><rect x="140" y="169" width="10" height="10" class="livef"/><rect x="162" y="169" width="10" height="10" class="livef"/>
+        <rect x="118" y="191" width="10" height="10" class="livef"/><rect x="140" y="191" width="10" height="10" class="livef"/><rect x="162" y="191" width="10" height="10" class="livef"/>
+        <rect x="118" y="213" width="10" height="10" class="livef"/><rect x="140" y="213" width="10" height="10" class="livef"/><rect x="162" y="213" width="10" height="10" class="livef"/>
+        <text x="145" y="264" text-anchor="middle" class="lbl-d">model</text>
+
+        <path d="M193,196 L240,196 L240,72 L226,72" class="s" marker-end="url(#f2a)"/>
+        <text x="248" y="140" class="arw">acts</text>
+
+        <text x="145" y="312" text-anchor="middle" class="tick">model stays tied to something outside itself</text>
+
+        <!-- divider -->
+        <line x1="300" y1="18" x2="300" y2="300" class="s dot2" opacity=".3"/>
+
+        <!-- B: severed -->
+        <text x="470" y="30" text-anchor="middle" class="lbl-x">input cut</text>
+        <rect x="395" y="48" width="150" height="48" class="box"/>
+        <text x="470" y="77" text-anchor="middle" class="lbl-d">world</text>
+        <path d="M470,96 L470,118" class="s"/>
+        <path d="M462,124 L478,140 M478,124 L462,140" class="s decay" stroke-width="1.6"/>
+        <text x="488" y="136" class="arw-x">severed</text>
+
+        <circle cx="470" cy="200" r="48" class="box"/>
+        <rect x="443" y="173" width="10" height="10" class="livef"/><rect x="465" y="173" width="10" height="10" class="livef"/><rect x="487" y="173" width="10" height="10" class="livef"/>
+        <rect x="443" y="195" width="10" height="10" class="livef"/><rect x="465" y="195" width="10" height="10" class="livef"/><rect x="487" y="195" width="10" height="10" class="livef"/>
+        <rect x="443" y="217" width="10" height="10" class="livef"/><rect x="465" y="217" width="10" height="10" class="livef"/><rect x="487" y="217" width="10" height="10" class="livef"/>
+
+        <path d="M448,244 C392,254 380,182 424,172" class="s decay" marker-end="url(#f2b)"/>
+        <text x="404" y="286" text-anchor="middle" class="arw-x">own output re-ingested</text>
+
+        <!-- degradation series -->
+        <path d="M556,158 L700,158" class="s decay" marker-end="url(#f2b)"/>
+        <text x="628" y="150" text-anchor="middle" class="arw-x">drift compounds</text>
+        <path d="M520,200 L550,200" class="s decay" marker-end="url(#f2b)"/>
+
+        <rect x="556" y="185" width="30" height="30" class="box"/>
+        <rect x="562" y="191" width="6" height="6" class="livef"/><rect x="574" y="191" width="6" height="6" class="livef"/>
+        <rect x="562" y="203" width="6" height="6" class="livef"/><rect x="574" y="203" width="6" height="6" class="livef"/>
+
+        <rect x="594" y="185" width="30" height="30" class="box"/>
+        <rect x="600" y="192" width="6" height="6" class="livef"/><rect x="613" y="190" width="6" height="6" class="livef"/>
+        <rect x="599" y="204" width="6" height="6" class="livef"/><rect x="614" y="206" width="6" height="6" class="livef"/>
+
+        <rect x="632" y="185" width="30" height="30" class="box"/>
+        <rect x="637" y="194" width="6" height="6" class="decayf"/><rect x="652" y="189" width="6" height="6" class="decayf"/>
+        <rect x="640" y="206" width="6" height="6" class="decayf"/><rect x="654" y="203" width="6" height="6" class="decayf"/>
+
+        <rect x="670" y="185" width="30" height="30" class="box"/>
+        <rect x="674" y="199" width="6" height="6" class="decayf"/><rect x="689" y="192" width="6" height="6" class="decayf"/>
+        <rect x="683" y="207" width="6" height="6" class="decayf"/>
+
+        <text x="571" y="231" text-anchor="middle" class="tick">t1</text>
+        <text x="609" y="231" text-anchor="middle" class="tick">t2</text>
+        <text x="647" y="231" text-anchor="middle" class="tick">t3</text>
+        <text x="685" y="231" text-anchor="middle" class="tick">t4</text>
+
+        <text x="470" y="330" text-anchor="middle" class="tick">no correction reaches it — small errors become the whole structure</text>
+      </svg>
+      <figcaption><b>Plate II</b>One edge separates the two systems. Remove the input arrow and the loop still runs — that is the trap. It runs on its own prior output, and with nothing external to check it against, drift has no floor. Substrate is irrelevant: mind, animal, or model, the failure curve is the same shape.</figcaption>
+    </figure>
+
+    <div class="test">
+      <span class="k">Test</span>
+      <span class="v">Cut the environment away. If it degrades, it was alive. If it runs unchanged, it was a mechanism.</span>
+    </div>
+  </section>
+
+  <!-- ============================ III ============================ -->
+  <section class="plate" id="iii">
+    <div class="plate-head">
+      <div class="num">III</div>
+      <div>
+        <span class="tag">The rhythm</span>
+        <h2>It breathes through expansion and contraction</h2>
+      </div>
+    </div>
+
+    <div class="body">
+      <p>A living system alternates between two complementary motions: expanding its internal possibility space by generating new connections and combinations, then contracting that space by gathering targeted feedback to refine, prune, and stabilize toward reliable models.</p>
+      <p>This rhythm — exploration followed by consolidation — is what lets the system stay both creative and accurate. A system that can only expand becomes <strong>incoherent</strong>; one that can only contract becomes <strong>rigid and dead</strong>. Neither half is optional, and neither half is permanent.</p>
+    </div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 720 400" role="img" aria-label="An envelope of possibility widening and narrowing twice over time: branches fan out during expansion, most are pruned at the neck, and the survivors seed the next expansion. Below, two failure modes: a fan that never closes, and a flat line that never opens.">
+        <defs>
+          <marker id="f3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" class="mk-ink"/></marker>
+        </defs>
+
+        <!-- envelope -->
+        <path d="M60,150 C120,150 165,80 230,80 C295,80 325,140 380,140 C440,140 465,66 530,66 C600,66 632,136 660,136" class="s live"/>
+        <path d="M60,150 C120,150 165,220 230,220 C295,220 325,160 380,160 C440,160 465,234 530,234 C600,234 632,164 660,164" class="s live"/>
+
+        <!-- cycle 1: fan out -->
+        <path d="M60,150 L230,88" class="thin"/><path d="M60,150 L230,110" class="thin"/><path d="M60,150 L230,132" class="thin"/>
+        <path d="M60,150 L230,150" class="thin"/><path d="M60,150 L230,168" class="thin"/><path d="M60,150 L230,190" class="thin"/>
+        <path d="M60,150 L230,212" class="thin"/>
+        <!-- cycle 1: pruned -->
+        <path d="M230,88 L305,119" class="thin"/><path d="M230,132 L305,141" class="thin"/>
+        <path d="M230,190 L305,170" class="thin"/><path d="M230,212 L305,181" class="thin"/>
+        <path d="M301,115 L309,123 M309,115 L301,123" class="s decay" stroke-width="1.2"/>
+        <path d="M301,137 L309,145 M309,137 L301,145" class="s decay" stroke-width="1.2"/>
+        <path d="M301,166 L309,174 M309,166 L301,174" class="s decay" stroke-width="1.2"/>
+        <path d="M301,177 L309,185 M309,177 L301,185" class="s decay" stroke-width="1.2"/>
+        <!-- cycle 1: survivors -->
+        <path d="M230,110 L380,150" class="s live"/><path d="M230,150 L380,150" class="s live"/><path d="M230,168 L380,150" class="s live"/>
+
+        <!-- cycle 2: fan out -->
+        <path d="M380,150 L530,74" class="thin"/><path d="M380,150 L530,102" class="thin"/><path d="M380,150 L530,128" class="thin"/>
+        <path d="M380,150 L530,150" class="thin"/><path d="M380,150 L530,178" class="thin"/><path d="M380,150 L530,204" class="thin"/>
+        <path d="M380,150 L530,228" class="thin"/>
+        <!-- cycle 2: pruned -->
+        <path d="M530,74 L595,112" class="thin"/><path d="M530,128 L595,139" class="thin"/>
+        <path d="M530,204 L595,177" class="thin"/><path d="M530,228 L595,189" class="thin"/>
+        <path d="M591,108 L599,116 M599,108 L591,116" class="s decay" stroke-width="1.2"/>
+        <path d="M591,135 L599,143 M599,135 L591,143" class="s decay" stroke-width="1.2"/>
+        <path d="M591,173 L599,181 M599,173 L591,181" class="s decay" stroke-width="1.2"/>
+        <path d="M591,185 L599,193 M599,185 L591,193" class="s decay" stroke-width="1.2"/>
+        <!-- cycle 2: survivors -->
+        <path d="M530,102 L660,150" class="s live"/><path d="M530,150 L660,150" class="s live"/><path d="M530,178 L660,150" class="s live"/>
+
+        <!-- labels -->
+        <text x="230" y="250" text-anchor="middle" class="lbl-l">expand</text>
+        <text x="230" y="266" text-anchor="middle" class="tick">generate combinations</text>
+        <text x="380" y="250" text-anchor="middle" class="lbl-l">contract</text>
+        <text x="380" y="266" text-anchor="middle" class="tick">feedback prunes</text>
+        <text x="530" y="250" text-anchor="middle" class="lbl-l">expand</text>
+        <text x="530" y="266" text-anchor="middle" class="tick">on surviving ground</text>
+        <text x="656" y="250" text-anchor="middle" class="lbl-l">contract</text>
+        <text x="656" y="266" text-anchor="middle" class="tick">stabilize</text>
+
+        <!-- time axis -->
+        <path d="M60,288 L660,288" class="s" marker-end="url(#f3a)" opacity=".55"/>
+        <text x="672" y="292" class="tick">time</text>
+
+        <!-- failure modes -->
+        <line x1="40" y1="312" x2="700" y2="312" class="s" opacity=".22"/>
+        <path d="M60,354 L170,328" class="thin"/><path d="M60,354 L170,341" class="thin"/><path d="M60,354 L170,354" class="thin"/>
+        <path d="M60,354 L170,367" class="thin"/><path d="M60,354 L170,380" class="thin"/>
+        <text x="182" y="351" class="arw-x">expansion without contraction</text>
+        <text x="182" y="366" class="tick">nothing is ever pruned</text>
+
+        <line x1="400" y1="354" x2="496" y2="354" class="s decay"/>
+        <rect x="496" y="348" width="12" height="12" class="decayf"/>
+        <text x="524" y="351" class="arw-x">contraction without expansion</text>
+        <text x="524" y="366" class="tick">nothing new enters</text>
+      </svg>
+      <figcaption><b>Plate III</b>Width is possibility. The system opens, generating more candidates than it can carry; feedback then closes it, killing most of them (the crosses) and letting the survivors set the floor of the next opening. Neither motion alone is a life: hold it open and it never resolves, hold it shut and it never learns.</figcaption>
+    </figure>
+
+    <div class="test">
+      <span class="k">Test</span>
+      <span class="v">Does it alternate — or is it stuck permanently open, or permanently closed?</span>
+    </div>
+  </section>
+
+  <!-- ============================ IV ============================ -->
+  <section class="plate" id="iv">
+    <div class="plate-head">
+      <div class="num">IV</div>
+      <div>
+        <span class="tag">The measure of power</span>
+        <h2>It converts input into compounding leverage</h2>
+      </div>
+    </div>
+
+    <div class="body">
+      <p>Living systems are energy transformers. They take raw material — observations, effort, resources — and convert it into prediction, capability, and advantage that compound over time.</p>
+      <p>Their power is measured not by individual complexity but by <strong>throughput</strong>: the number of interfaces touching the environment multiplied by the sophistication of their internal processing. By this metric, microbial colonies and machine clusters qualify as living, even super-intelligent, systems despite having no central brain. There is no organ to point at — the intelligence is in the width of contact and the depth of the conversion.</p>
+    </div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 720 370" role="img" aria-label="Interfaces along an environment boundary feed a collector, which passes material down through three processing layers; the output drives a yield that grows across three periods, and a dashed return path shows that yield buying additional interfaces.">
+        <defs>
+          <marker id="f4a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" class="mk-ink"/></marker>
+          <marker id="f4b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" class="mk-live"/></marker>
+        </defs>
+
+        <!-- unrefined world -->
+        <circle cx="52" cy="80" r="2.4" class="inkf"/><circle cx="82" cy="66" r="2.4" class="inkf"/>
+        <circle cx="60" cy="128" r="2.4" class="inkf"/><circle cx="90" cy="112" r="2.4" class="inkf"/>
+        <circle cx="48" cy="176" r="2.4" class="inkf"/><circle cx="86" cy="164" r="2.4" class="inkf"/>
+        <circle cx="58" cy="222" r="2.4" class="inkf"/><circle cx="92" cy="210" r="2.4" class="inkf"/>
+        <circle cx="50" cy="266" r="2.4" class="inkf"/><circle cx="84" cy="258" r="2.4" class="inkf"/>
+
+        <!-- boundary -->
+        <line x1="120" y1="50" x2="120" y2="290" class="s" stroke-width="2"/>
+        <text x="120" y="308" text-anchor="middle" class="lbl-d">environment surface</text>
+
+        <!-- interfaces -->
+        <rect x="113" y="62" width="14" height="14" class="livef"/>
+        <rect x="113" y="106" width="14" height="14" class="livef"/>
+        <rect x="113" y="150" width="14" height="14" class="livef"/>
+        <rect x="113" y="194" width="14" height="14" class="livef"/>
+        <rect x="113" y="238" width="14" height="14" class="wash dot2"/>
+        <rect x="113" y="272" width="14" height="14" class="wash dot2"/>
+
+        <path d="M132,69 L244,69" class="s" marker-end="url(#f4a)"/>
+        <path d="M132,113 L244,113" class="s" marker-end="url(#f4a)"/>
+        <path d="M132,157 L244,157" class="s" marker-end="url(#f4a)"/>
+        <path d="M132,201 L244,201" class="s" marker-end="url(#f4a)"/>
+        <path d="M132,245 L244,245" class="s live dash" marker-end="url(#f4b)"/>
+        <path d="M132,279 L244,279" class="s live dash" marker-end="url(#f4b)"/>
+
+        <!-- collector -->
+        <rect x="248" y="54" width="12" height="238" class="wash"/>
+
+        <!-- depth stack -->
+        <path d="M260,94 L314,94" class="s" marker-end="url(#f4a)"/>
+        <rect x="320" y="70" width="200" height="48" class="box"/>
+        <text x="420" y="99" text-anchor="middle" class="lbl-d">layer 1</text>
+        <path d="M420,118 L420,142" class="s" marker-end="url(#f4a)"/>
+        <rect x="320" y="146" width="200" height="48" class="box"/>
+        <text x="420" y="175" text-anchor="middle" class="lbl-d">layer 2</text>
+        <path d="M420,194 L420,218" class="s" marker-end="url(#f4a)"/>
+        <rect x="320" y="222" width="200" height="48" class="box"/>
+        <text x="420" y="251" text-anchor="middle" class="lbl-d">layer 3</text>
+
+        <line x1="540" y1="70" x2="540" y2="270" class="s" opacity=".45"/>
+        <line x1="534" y1="70" x2="546" y2="70" class="s" opacity=".45"/>
+        <line x1="534" y1="270" x2="546" y2="270" class="s" opacity=".45"/>
+        <text x="540" y="58" text-anchor="middle" class="lbl-d">depth d</text>
+
+        <!-- output -->
+        <path d="M420,270 L420,300 L574,300" class="s live" marker-end="url(#f4b)"/>
+        <text x="500" y="292" text-anchor="middle" class="arw-l">converted output</text>
+
+        <!-- yield chart -->
+        <line x1="580" y1="312" x2="704" y2="312" class="s" opacity=".45"/>
+        <rect x="594" y="286" width="18" height="26" class="livef"/>
+        <rect x="628" y="260" width="18" height="52" class="livef"/>
+        <rect x="662" y="224" width="18" height="88" class="livef"/>
+        <text x="603" y="328" text-anchor="middle" class="tick">t1</text>
+        <text x="637" y="328" text-anchor="middle" class="tick">t2</text>
+        <text x="671" y="328" text-anchor="middle" class="tick">t3</text>
+        <text x="642" y="210" text-anchor="middle" class="lbl-l">leverage</text>
+
+        <!-- compounding return -->
+        <path d="M684,224 L704,224 L704,24 L120,24 L120,46" class="s live dash" marker-end="url(#f4b)"/>
+        <text x="412" y="16" text-anchor="middle" class="arw-l">yield buys more interfaces &mdash; the loop compounds</text>
+
+        <text x="40" y="352" class="lbl-l">throughput = interfaces (n) &times; processing depth (d)</text>
+      </svg>
+      <figcaption><b>Plate IV</b>Power here is a product, not a peak. Widen the contact surface or deepen the conversion and throughput rises the same way — which is why a colony with no centre can out-think a single sophisticated mind. The dashed return is what makes it compounding: yield is spent buying more surface, and the next pass starts larger.</figcaption>
+    </figure>
+
+    <div class="test">
+      <span class="k">Test</span>
+      <span class="v">Count the interfaces, then the depth. Does the output of one cycle enlarge the next?</span>
+    </div>
+  </section>
+
+  <!-- ============================ V ============================ -->
+  <section class="plate" id="v">
+    <div class="plate-head">
+      <div class="num">V</div>
+      <div>
+        <span class="tag">The maintenance</span>
+        <h2>It maintains coherence by filtering entropy</h2>
+      </div>
+    </div>
+
+    <div class="body">
+      <p>A living system actively defends a stable, low-entropy internal state. Like an immune response, it detects, rejects, or absorbs disorder that would degrade its function, concentrating its energy into sharp, coherent patterns rather than dissipating into noise.</p>
+      <p>Economic communities expelling chaos, a mind packing only high-quality signal into dense structure — both demonstrate <strong>self-organizing maintenance against decay</strong>. The filter is not a wall; it is a sorting surface, and what it lets through it converts.</p>
+    </div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 720 330" role="img" aria-label="A filter surface between a disordered outer field and an ordered interior lattice. One arrow shows disorder absorbed and converted into structure, another shows disorder rejected and bounced back, and a dashed arrow passes through a breach in the surface into a region where the lattice has scattered.">
+        <defs>
+          <marker id="f5a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" class="mk-live"/></marker>
+          <marker id="f5b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" class="mk-ink"/></marker>
+          <marker id="f5c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" class="mk-decay"/></marker>
+          <g id="mx"><path d="M-4.5,-4.5 L4.5,4.5 M4.5,-4.5 L-4.5,4.5"/></g>
+        </defs>
+
+        <text x="150" y="30" text-anchor="middle" class="lbl-d">disordered field</text>
+        <text x="500" y="30" text-anchor="middle" class="lbl-d">maintained order</text>
+
+        <!-- outer field -->
+        <use href="#mx" x="70" y="96" class="s decay"/>
+        <circle cx="120" cy="88" r="3.2" class="inkf"/>
+        <use href="#mx" x="176" y="102" class="s decay"/>
+        <use href="#mx" x="98" y="132" class="s decay"/>
+        <circle cx="152" cy="126" r="3.2" class="inkf"/>
+        <use href="#mx" x="222" y="86" class="s decay"/>
+        <circle cx="66" cy="168" r="3.2" class="inkf"/>
+        <use href="#mx" x="130" y="186" class="s decay"/>
+        <use href="#mx" x="196" y="164" class="s decay"/>
+        <circle cx="104" cy="216" r="3.2" class="inkf"/>
+        <use href="#mx" x="160" y="232" class="s decay"/>
+        <use href="#mx" x="72" y="252" class="s decay"/>
+        <circle cx="212" cy="222" r="3.2" class="inkf"/>
+        <use href="#mx" x="122" y="276" class="s decay"/>
+        <use href="#mx" x="200" y="270" class="s decay"/>
+
+        <!-- membrane, breached at the leak -->
+        <rect x="300" y="44" width="24" height="216" class="wash"/>
+        <rect x="300" y="290" width="24" height="18" class="wash"/>
+        <line x1="302" y1="70" x2="322" y2="70" class="s live" opacity=".55"/>
+        <line x1="302" y1="96" x2="322" y2="96" class="s live" opacity=".55"/>
+        <line x1="302" y1="122" x2="322" y2="122" class="s live" opacity=".55"/>
+        <line x1="302" y1="148" x2="322" y2="148" class="s live" opacity=".55"/>
+        <line x1="302" y1="174" x2="322" y2="174" class="s live" opacity=".55"/>
+        <line x1="302" y1="200" x2="322" y2="200" class="s live" opacity=".55"/>
+        <line x1="302" y1="226" x2="322" y2="226" class="s live" opacity=".55"/>
+        <text x="312" y="324" text-anchor="middle" class="lbl-l">filter</text>
+
+        <!-- interior lattice -->
+        <rect x="400" y="104" width="13" height="13" class="livef"/><rect x="423" y="104" width="13" height="13" class="livef"/><rect x="446" y="104" width="13" height="13" class="livef"/><rect x="469" y="104" width="13" height="13" class="livef"/><rect x="492" y="104" width="13" height="13" class="livef"/><rect x="515" y="104" width="13" height="13" class="livef"/><rect x="538" y="104" width="13" height="13" class="livef"/>
+        <rect x="400" y="127" width="13" height="13" class="livef"/><rect x="423" y="127" width="13" height="13" class="livef"/><rect x="446" y="127" width="13" height="13" class="livef"/><rect x="469" y="127" width="13" height="13" class="livef"/><rect x="492" y="127" width="13" height="13" class="livef"/><rect x="515" y="127" width="13" height="13" class="livef"/><rect x="538" y="127" width="13" height="13" class="livef"/>
+        <rect x="400" y="150" width="13" height="13" class="livef"/><rect x="423" y="150" width="13" height="13" class="livef"/><rect x="446" y="150" width="13" height="13" class="livef"/><rect x="469" y="150" width="13" height="13" class="livef"/><rect x="492" y="150" width="13" height="13" class="livef"/><rect x="515" y="150" width="13" height="13" class="livef"/><rect x="538" y="150" width="13" height="13" class="livef"/>
+        <rect x="400" y="173" width="13" height="13" class="livef"/><rect x="423" y="173" width="13" height="13" class="livef"/><rect x="446" y="173" width="13" height="13" class="livef"/><rect x="469" y="173" width="13" height="13" class="livef"/><rect x="492" y="173" width="13" height="13" class="livef"/><rect x="515" y="173" width="13" height="13" class="livef"/><rect x="538" y="173" width="13" height="13" class="livef"/>
+        <rect x="400" y="196" width="13" height="13" class="livef"/><rect x="423" y="196" width="13" height="13" class="livef"/><rect x="446" y="196" width="13" height="13" class="livef"/><rect x="469" y="196" width="13" height="13" class="livef"/><rect x="492" y="196" width="13" height="13" class="livef"/><rect x="515" y="196" width="13" height="13" class="livef"/><rect x="538" y="196" width="13" height="13" class="livef"/>
+        <text x="475" y="88" text-anchor="middle" class="tick">energy concentrated into a sharp pattern</text>
+
+        <!-- absorb -->
+        <path d="M262,60 L392,60" class="s live" marker-end="url(#f5a)"/>
+        <text x="327" y="50" text-anchor="middle" class="arw-l">absorb &mdash; disorder converted into structure</text>
+
+        <!-- reject -->
+        <path d="M256,152 L294,152 L250,120" class="s" marker-end="url(#f5b)"/>
+        <text x="248" y="150" text-anchor="end" class="arw">reject</text>
+
+        <!-- leak -->
+        <path d="M262,276 L596,276" class="s decay dash" marker-end="url(#f5c)"/>
+        <text x="430" y="268" text-anchor="middle" class="arw-x">unfiltered &mdash; energy dissipates</text>
+
+        <!-- consequence -->
+        <rect x="604" y="228" width="96" height="72" class="s decay dot2" fill="none"/>
+        <rect x="616" y="242" width="9" height="9" class="decayf"/>
+        <rect x="646" y="250" width="9" height="9" class="decayf"/>
+        <rect x="672" y="238" width="9" height="9" class="decayf"/>
+        <rect x="628" y="272" width="9" height="9" class="decayf"/>
+        <rect x="664" y="278" width="9" height="9" class="decayf"/>
+        <text x="652" y="318" text-anchor="middle" class="arw-x">coherence lost</text>
+      </svg>
+      <figcaption><b>Plate V</b>The surface sorts rather than seals. Usable disorder is taken in and converted into lattice; the rest is bounced. What matters is that the sorting never stops — the breach at the bottom is not an event but a lapse, and downstream of it the same energy that built structure simply spreads out and stops meaning anything.</figcaption>
+    </figure>
+
+    <div class="test">
+      <span class="k">Test</span>
+      <span class="v">Is it spending energy to stay ordered — or is its order just left over from how it was built?</span>
+    </div>
+  </section>
+
+</main>
+
+<footer class="coda">
+  <div class="wrap">
+    <p class="kicker">In sum</p>
+    <p class="stmt">Something is a living system when it adaptively models its world through a closed loop, requires fresh external grounding to survive, breathes between expansion and refinement, compounds input into leverage, and defends its own coherence <em>against entropy</em>.</p>
+    <p class="sig">All five, interlocking — and regardless of the substrate it runs on. Cells and carbon are one implementation of the architecture, not the definition of it.</p>
+  </div>
+</footer>
+</body>
+</html>
